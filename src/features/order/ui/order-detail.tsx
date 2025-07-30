@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { renderMetadataField } from '@/features/order/utils';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import { Calendar, DownloadIcon } from 'lucide-react';
+import { DownloadIcon } from 'lucide-react';
 import { useRef } from 'react';
 import { useGetOrder } from '../hooks/useGetOrder';
 import OrderActions from './order-actions';
@@ -82,10 +82,11 @@ export default function OrderDetail() {
 
           <CardContent className="space-y-4">
             <div className="flex gap-16">
-              <div className="flex items-center gap-2 text-gray-600">
-                <Calendar className="h-4 w-4" />
+              <div className="flex items-center ga">
+                <span className="text-sm font-medium text-gray-500">
+                  تاریخ شروع:
+                </span>{' '}
                 <span>
-                  تاریخ شروع:{' '}
                   {new Date(data.order.startDate).toLocaleDateString('fa-IR')}
                 </span>
               </div>
@@ -98,24 +99,29 @@ export default function OrderDetail() {
               </div>
             </div>
 
-            <span className="text-sm font-medium text-gray-500">
-              جزئیات نسخه:
-            </span>
-            {Object.keys(data.order.metaData).length > 0 && (
-              <div className="mt-2 space-y-4">
-                {renderMetadataField('دستورالعمل:', data.metadata.instruction)}
-                {renderMetadataField(
-                  'دلیل قطع:',
-                  data.metadata.discontinueUsingReason
-                )}
-              </div>
-            )}
+            <div>
+              <span className="text-sm font-medium text-gray-500">
+                جزئیات نسخه:
+              </span>
+              {Object.keys(data.order.metaData).length > 0 && (
+                <div className="mt-2 space-y-4">
+                  {renderMetadataField(
+                    'دستورالعمل:',
+                    data.metadata.instruction
+                  )}
+                  {renderMetadataField(
+                    'دلیل قطع:',
+                    data.metadata.discontinueUsingReason
+                  )}
+                </div>
+              )}
+            </div>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
-              <p>فایل های ضمیمه</p>
+              <span>فایل های ضمیمه</span>
               <Button
                 variant="ghost"
                 className="border-2 border-primary border-dashed flex items-center"

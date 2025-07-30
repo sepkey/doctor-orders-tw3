@@ -1,3 +1,4 @@
+import Searchbox from '@/components/Searchbox';
 import ThemeSwitcher from '@/components/theme-switcher';
 import { Link } from 'react-router';
 import Logo from './Logo';
@@ -13,6 +14,7 @@ export default function Header() {
           </div>
         </Link>
         <div className="flex items-center">
+          <Searchbox />
           <ThemeSwitcher />
         </div>
       </div>
