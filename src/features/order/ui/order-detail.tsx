@@ -4,12 +4,29 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { renderMetadataField } from '@/features/order/utils';
+import html2pdf from 'html2pdf.js';
 import { Calendar, DownloadIcon } from 'lucide-react';
+import { useRef } from 'react';
 import { useGetOrder } from '../hooks/useGetOrder';
 import OrderActions from './order-actions';
 
 export default function OrderDetail() {
   const { data, isLoading, isError, error } = useGetOrder();
+  const contentRef = useRef(null);
+
+  const handleDownloadPDF = async () => {
+    if (!contentRef.current) return;
+
+    const opt = {
+      margin: 0,
+      filename: `order_${data?.order?.title || 'details'}.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    };
+
+    html2pdf().set(opt).from(contentRef.current).save();
+  };
 
   if (isLoading) {
     return <Spinner />;
@@ -26,7 +43,7 @@ export default function OrderDetail() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       <div className="space-y-6">
-        <Card>
+        <Card ref={contentRef}>
           <CardHeader>
             <div className="flex justify-between">
               <div className="flex items-center gap-3">
@@ -80,7 +97,11 @@ export default function OrderDetail() {
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
               <p>فایل های ضمیمه</p>
-              <Button variant="ghost" className="border border-primary">
+              <Button
+                variant="ghost"
+                className="border-2 border-primary border-dashed flex items-center"
+                onClick={handleDownloadPDF}
+              >
                 دانلود pdf نسخه
                 <DownloadIcon />
               </Button>
