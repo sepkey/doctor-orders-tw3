@@ -1,5 +1,6 @@
 import Placeholder from '@/components/placeholder';
 import Spinner from '@/components/spinner';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { useGetOrders } from '../hooks/useGetOrders';
 import type { OrderStatus } from '../type';
 import OrderCard from './order-card';
@@ -29,10 +30,12 @@ export default function OrdersFilteredList({ status }: OrdersListProps) {
   }
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {currentOrders.map((order) => (
-        <OrderCard key={order.id} order={order} />
-      ))}
-    </div>
+    <ScrollArea className="h-[65vh] w-full">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {currentOrders.map((order) => (
+          <OrderCard key={order.id} order={order} />
+        ))}
+      </div>
+    </ScrollArea>
   );
 }
