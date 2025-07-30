@@ -23,7 +23,7 @@ import { Loader2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import * as z from 'zod';
-import useCreateOrder from '../hooks/useCreateOrder';
+import useCreateOrder from '../hooks/use-create-order';
 import type { Order } from '../type';
 import { createMetaData } from '../utils';
 

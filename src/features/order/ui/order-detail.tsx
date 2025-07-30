@@ -8,7 +8,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { DownloadIcon } from 'lucide-react';
 import { useRef } from 'react';
-import { useGetOrder } from '../hooks/useGetOrder';
+import { useGetOrder } from '../hooks/use-get-order';
 import OrderActions from './order-actions';
 
 export default function OrderDetail() {

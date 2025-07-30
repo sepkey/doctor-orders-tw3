@@ -21,8 +21,8 @@ import {
 import { MoreVertical, ToggleLeft, ToggleRight, Trash2 } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import useDeleteOrder from '../hooks/useDeleteOrder';
-import useUpdateOrderType from '../hooks/useUpdateOrderType';
+import useDeleteOrder from '../hooks/use-delete-order';
+import useUpdateOrderType from '../hooks/use-update-order-type';
 import type { Order } from '../type';
 
 type DeleteOrderProps = {

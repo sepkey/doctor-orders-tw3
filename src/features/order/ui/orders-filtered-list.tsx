@@ -1,7 +1,7 @@
 import Placeholder from '@/components/placeholder';
 import Spinner from '@/components/spinner';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { useGetOrders } from '../hooks/useGetOrders';
+import { useGetOrders } from '../hooks/use--get-orders';
 import type { OrderStatus } from '../type';
 import OrderCard from './order-card';
 
