@@ -11,10 +11,18 @@
     {
       "id": "2",
       "title": "قطع مصرف داروی B",
-      "type": "outOfOrder",
+      "type": "duringOrder",
       "startDate": "2025-06-25",
       "commandType": "DRUGS",
       "metaData": "{ \"metadata\": \"{ \\\"discontinueUsingReason\\\": \\\"عوارض گوارشی\\\" }\" }"
+    },
+    {
+      "id": "c26b",
+      "title": "sepide",
+      "type": "outOfOrder",
+      "startDate": "2025-07-11",
+      "commandType": "RADIOLOGY",
+      "metaData": "{\"metadata\":\"{\\\"instruction\\\":\\\"ddee\\\",\\\"discontinueUsingReason\\\":\\\"deer\\\"}\"}"
     }
   ]
 }

@@ -2,7 +2,7 @@ import Placeholder from '@/components/placeholder';
 import Spinner from '@/components/spinner';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { renderMetadataField } from '@/features/order/utils';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -69,11 +69,11 @@ export default function OrderDetail() {
               </div>
               <div className="flex items-center gap-4">
                 {data.order.type === 'duringOrder' ? (
-                  <Badge className="bg-green-100 text-success text-center">
-                    فعال
-                  </Badge>
+                  <Badge className="bg-green-100 text-success ">فعال</Badge>
                 ) : (
-                  <Badge className="bg-red-100 text-destructive">لغو شده</Badge>
+                  <Badge className="bg-red-100 text-destructive ">
+                    لغو شده
+                  </Badge>
                 )}
                 <OrderActions order={data.order} />
               </div>
