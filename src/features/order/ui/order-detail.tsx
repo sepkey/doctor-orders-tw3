@@ -4,7 +4,8 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { renderMetadataField } from '@/features/order/utils';
-import html2pdf from 'html2pdf.js';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 import { Calendar, DownloadIcon } from 'lucide-react';
 import { useRef } from 'react';
 import { useGetOrder } from '../hooks/useGetOrder';
@@ -14,18 +15,34 @@ export default function OrderDetail() {
   const { data, isLoading, isError, error } = useGetOrder();
   const contentRef = useRef(null);
 
-  const handleDownloadPDF = async () => {
-    if (!contentRef.current) return;
+  const handleDownloadPdf = async () => {
+    const input = contentRef.current;
+    if (input) {
+      const canvas = await html2canvas(input, {
+        scale: 2,
+        useCORS: true,
+      });
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const imgWidth = 210;
+      const pageHeight = 297;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      let heightLeft = imgHeight;
 
-    const opt = {
-      margin: 0,
-      filename: `order_${data?.order?.title || 'details'}.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-    };
+      let position = 0;
 
-    html2pdf().set(opt).from(contentRef.current).save();
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+
+      while (heightLeft >= 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+
+      pdf.save('prescription-details.pdf');
+    }
   };
 
   if (isLoading) {
@@ -48,11 +65,13 @@ export default function OrderDetail() {
             <div className="flex justify-between">
               <div className="flex items-center gap-3">
                 {data.itemToDisplay?.icon}
-                <CardTitle className="text-2xl">{data.order.title}</CardTitle>
+                <h2 className="text-xl">{data.order.title}</h2>
               </div>
               <div className="flex items-center gap-4">
                 {data.order.type === 'duringOrder' ? (
-                  <Badge className="bg-green-100 text-success">فعال</Badge>
+                  <Badge className="bg-green-100 text-success text-center">
+                    فعال
+                  </Badge>
                 ) : (
                   <Badge className="bg-red-100 text-destructive">لغو شده</Badge>
                 )}
@@ -100,7 +119,7 @@ export default function OrderDetail() {
               <Button
                 variant="ghost"
                 className="border-2 border-primary border-dashed flex items-center"
-                onClick={handleDownloadPDF}
+                onClick={handleDownloadPdf}
               >
                 دانلود pdf نسخه
                 <DownloadIcon />
