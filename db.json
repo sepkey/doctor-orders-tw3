@@ -3,7 +3,7 @@
     {
       "id": "1",
       "title": "شروع مصرف داروی A",
-      "type": "duringOrder",
+      "type": "outOfOrder",
       "startDate": "2025-07-01",
       "commandType": "DRUGS",
       "metaData": "{ \"metadata\": \"{ \\\"instruction\\\": \\\"هر 8 ساعت یکبار\\\" }\" }"
@@ -19,10 +19,50 @@
     {
       "id": "c26b",
       "title": "sepide",
-      "type": "outOfOrder",
+      "type": "duringOrder",
       "startDate": "2025-07-11",
       "commandType": "RADIOLOGY",
       "metaData": "{\"metadata\":\"{\\\"instruction\\\":\\\"ddee\\\",\\\"discontinueUsingReason\\\":\\\"deer\\\"}\"}"
+    },
+    {
+      "id": "45ed",
+      "title": "kia",
+      "type": "duringOrder",
+      "startDate": "2025-07-11",
+      "commandType": "RADIOLOGY",
+      "metaData": "{\"metadata\":\"{\\\"instruction\\\":\\\"kio\\\"}\"}"
+    },
+    {
+      "id": "aa07",
+      "title": "ioi",
+      "type": "outOfOrder",
+      "startDate": "2025-07-05",
+      "commandType": "LAB_TEST",
+      "metaData": "{\"metadata\":\"{\\\"instruction\\\":\\\"mkmkmk\\\",\\\"discontinueUsingReason\\\":\\\"l,l,l\\\"}\"}"
+    },
+    {
+      "id": "2979",
+      "title": "mohmd",
+      "type": "duringOrder",
+      "startDate": "2025-07-18",
+      "commandType": "LAB_TEST",
+      "metaData": "{\"metadata\":\"{\\\"instruction\\\":\\\"kokok\\\"}\"}"
+    },
+    {
+      "id": "3yii",
+      "title": "nima",
+      "type": "duringOrder",
+      "startDate": "2025-07-5",
+      "commandType": "LAB_TEST",
+      "metaData": "{\"metadata\":\"{\\\"instruction\\\":\\\"kokok\\\"}\"}"
+    },
+    {
+      "id": "471d",
+      "title": "لف",
+      "type": "outOfOrder",
+      "startDate": "2025-07-02",
+      "commandType": "LAB_TEST",
+      "metaData": "{\"metadata\":\"{\\\"instruction\\\":\\\"ت تذ\\\",\\\"discontinueUsingReason\\\":\\\"نته\\\"}\"}"
     }
   ]
 }
