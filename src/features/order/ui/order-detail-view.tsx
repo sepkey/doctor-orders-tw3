@@ -1,62 +1,32 @@
-import Placeholder from '@/components/placeholder';
-import Spinner from '@/components/spinner';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { renderMetadataField } from '@/features/order/utils';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
 import { DownloadIcon } from 'lucide-react';
-import { useRef } from 'react';
-import { useGetOrder } from '../hooks/use-get-order';
+import { Order, ParsedMetadata } from '../type';
 import OrderActions from './order-actions';
 
-export default function OrderDetail() {
-  const { data, isLoading, isError, error } = useGetOrder();
-  const contentRef = useRef(null);
-
-  const handleDownloadPdf = async () => {
-    const input = contentRef.current;
-    if (input) {
-      const canvas = await html2canvas(input, {
-        scale: 2,
-        useCORS: true,
-      });
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const imgWidth = 210;
-      const pageHeight = 297;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
-
-      let position = 0;
-
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
-
-      pdf.save('prescription-details.pdf');
-    }
+type OrderDetailViewProps = {
+  data: {
+    order: Order;
+    itemToDisplay:
+      | {
+          type: string;
+          label: string;
+          icon: JSX.Element;
+        }
+      | undefined;
+    metadata: ParsedMetadata;
   };
+  contentRef: React.RefObject<HTMLDivElement>;
+  onDownloadPdf: () => void;
+};
 
-  if (isLoading) {
-    return <Spinner />;
-  }
-
-  if (isError) {
-    return <Placeholder label={error.message} />;
-  }
-
-  if (!data?.order) {
-    return <Placeholder label="چنین نسخه ای موجود نیست" />;
-  }
-
+export default function OrderDetailView({
+  data,
+  contentRef,
+  onDownloadPdf,
+}: OrderDetailViewProps) {
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
       <div className="space-y-6">
@@ -125,7 +95,7 @@ export default function OrderDetail() {
               <Button
                 variant="ghost"
                 className="border-2 border-primary border-dashed flex items-center"
-                onClick={handleDownloadPdf}
+                onClick={onDownloadPdf}
               >
                 دانلود pdf نسخه
                 <DownloadIcon />
