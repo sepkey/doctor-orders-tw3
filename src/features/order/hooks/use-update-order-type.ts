@@ -2,8 +2,8 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { updateOrderType } from '../service';
 import { Order } from '../type';
-import { getOrderKey } from './useGetOrder';
-import { getOrdersKey } from './useGetOrders';
+import { getOrdersKey } from './use--get-orders';
+import { getOrderKey } from './use-get-order';
 
 type Mutation = {
   id: string;

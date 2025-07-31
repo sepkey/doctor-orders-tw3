@@ -1,6 +1,6 @@
 import Heading from '@/components/heading';
 import { Button } from '@/components/ui/button';
-import OrderDetail from '@/features/order/ui/order-detail';
+import OrderDetail from '@/features/order/ui/order-detail-container';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router';
 

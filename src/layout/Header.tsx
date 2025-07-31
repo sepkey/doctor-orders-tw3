@@ -1,7 +1,7 @@
 import Searchbox from '@/components/Searchbox';
 import ThemeSwitcher from '@/components/theme-switcher';
 import { Link } from 'react-router';
-import Logo from './Logo';
+import Logo from './logo';
 
 export default function Header() {
   return (

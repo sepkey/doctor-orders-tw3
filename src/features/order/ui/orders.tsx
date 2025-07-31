@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { OrderStatus } from '../type';
 import CreateOrder from './create-order';
-import OrdersFilteredList from './orders-filtered-list';
+import OrdersFilteredListContainer from './orders-filtered-list-container';
 import OrdersTab from './orders-tab';
 
 export function Orders() {
@@ -14,7 +14,7 @@ export function Orders() {
         <CreateOrder />
       </div>
 
-      <OrdersFilteredList status={activeTab} />
+      <OrdersFilteredListContainer status={activeTab} />
     </div>
   );
 }

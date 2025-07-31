@@ -3,7 +3,7 @@
     {
       "id": "1",
       "title": "شروع مصرف داروی A",
-      "type": "outOfOrder",
+      "type": "duringOrder",
       "startDate": "2025-07-01",
       "commandType": "DRUGS",
       "metaData": "{ \"metadata\": \"{ \\\"instruction\\\": \\\"هر 8 ساعت یکبار\\\" }\" }"
@@ -41,28 +41,12 @@
       "metaData": "{\"metadata\":\"{\\\"instruction\\\":\\\"mkmkmk\\\",\\\"discontinueUsingReason\\\":\\\"l,l,l\\\"}\"}"
     },
     {
-      "id": "2979",
-      "title": "mohmd",
-      "type": "duringOrder",
-      "startDate": "2025-07-18",
-      "commandType": "LAB_TEST",
-      "metaData": "{\"metadata\":\"{\\\"instruction\\\":\\\"kokok\\\"}\"}"
-    },
-    {
       "id": "3yii",
       "title": "nima",
       "type": "duringOrder",
       "startDate": "2025-07-5",
       "commandType": "LAB_TEST",
       "metaData": "{\"metadata\":\"{\\\"instruction\\\":\\\"kokok\\\"}\"}"
-    },
-    {
-      "id": "471d",
-      "title": "لف",
-      "type": "outOfOrder",
-      "startDate": "2025-07-02",
-      "commandType": "LAB_TEST",
-      "metaData": "{\"metadata\":\"{\\\"instruction\\\":\\\"ت تذ\\\",\\\"discontinueUsingReason\\\":\\\"نته\\\"}\"}"
     }
   ]
 }

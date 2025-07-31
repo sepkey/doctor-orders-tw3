@@ -1,7 +1,7 @@
 import { useSearchStore } from '@/store/search-store';
 import { useEffect } from 'react';
 import { Outlet } from 'react-router';
-import Header from './Header';
+import Header from './header';
 
 export default function Layout() {
   const { searchTerm, setDebouncedSearch } = useSearchStore();

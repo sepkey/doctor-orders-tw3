@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { createOrder } from '../service';
-import { getOrdersKey } from './useGetOrders';
+import { getOrdersKey } from './use--get-orders';
 
 export default function useCreateOrder() {
   const queryClient = useQueryClient();

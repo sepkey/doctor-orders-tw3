@@ -9,7 +9,7 @@ interface OrderCardProps {
 
 export default function OrderCard({ order }: OrderCardProps) {
   return (
-    <Link to={`/${order.id}`}>
+    <Link to={`/order/${order.id}`}>
       <Card className="cursor-pointer transition-all duration-200 hover:shadow-md hover:scale-[1.02] group">
         <CardHeader className="pb-3">
           <h3 className="font-semibold text-lg  transition-colors">
