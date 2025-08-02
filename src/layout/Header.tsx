@@ -1,4 +1,4 @@
-import Searchbox from '@/components/Searchbox';
+import Searchbox from '@/components/searchbox';
 import ThemeSwitcher from '@/components/theme-switcher';
 import { Link } from 'react-router';
 import Logo from './logo';

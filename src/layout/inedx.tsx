@@ -1,19 +1,7 @@
-import { useSearchStore } from '@/store/search-store';
-import { useEffect } from 'react';
 import { Outlet } from 'react-router';
 import Header from './header';
 
 export default function Layout() {
-  const { searchTerm, setDebouncedSearch } = useSearchStore();
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedSearch(searchTerm);
-    }, 1000);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [searchTerm, setDebouncedSearch]);
   return (
     <div className="min-h-screen bg-muted">
       <Header />

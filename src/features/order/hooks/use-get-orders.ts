@@ -6,7 +6,7 @@ import type { OrderStatus } from '../type';
 export const getOrdersKey = () => ['orders'];
 
 export function useGetOrders(status: OrderStatus) {
-  const { debouncedSearch } = useSearchStore();
+  const debouncedSearch = useSearchStore((s) => s.debouncedSearch);
   return useQuery({
     queryKey: getOrdersKey(),
     queryFn: getOrders,

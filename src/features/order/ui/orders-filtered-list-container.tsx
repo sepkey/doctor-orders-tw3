@@ -1,6 +1,6 @@
 import Placeholder from '@/components/placeholder';
 import Spinner from '@/components/spinner';
-import { useGetOrders } from '../hooks/use--get-orders';
+import { useGetOrders } from '../hooks/use-get-orders';
 import type { OrderStatus } from '../type';
 import OrdersFilteredListView from './orders-filtered-list-view';
 
