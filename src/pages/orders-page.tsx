@@ -3,7 +3,7 @@ import { Orders } from '@/features/order/ui/orders';
 
 export default function OrdersPage() {
   return (
-    <div className="container space-y-4">
+    <div className="space-y-4">
       <Heading title="نسخه های پزشکی" />
       <Orders />
     </div>

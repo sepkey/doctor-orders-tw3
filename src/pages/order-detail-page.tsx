@@ -8,7 +8,7 @@ export default function OrderDetailPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="container space-y-4">
+    <div className="space-y-4">
       <Heading
         title="جزییات نسخه"
         element={
