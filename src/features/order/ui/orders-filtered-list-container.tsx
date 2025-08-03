@@ -1,6 +1,5 @@
 import Placeholder from '@/components/placeholder';
 import Spinner from '@/components/spinner';
-import { useSearchStore } from '@/store/search-store';
 import { useSearchParams } from 'react-router';
 import { useGetOrders } from '../hooks/use-get-orders';
 import type { Order, OrderType } from '../type';
@@ -8,16 +7,12 @@ import OrdersFilteredListView from './orders-filtered-list-view';
 
 export default function OrdersFilteredListContainer() {
   const { data: orders, error, isError, isLoading } = useGetOrders();
-  const debouncedSearch = useSearchStore((s) => s.debouncedSearch);
   const [searchParams] = useSearchParams();
 
   const filterVal =
     (searchParams.get('orderType') as OrderType | 'all') || 'all';
 
   let filteredOrders: Order[] = [];
-
-  filteredOrders =
-    orders?.filter((order) => order.title.includes(debouncedSearch)) || [];
 
   if (filterVal === 'all') {
     filteredOrders = orders as Order[];
