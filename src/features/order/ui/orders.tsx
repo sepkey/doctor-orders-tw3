@@ -1,20 +1,24 @@
-import { useState } from 'react';
-import type { OrderStatus } from '../type';
+import { CheckCircle, Tally3, XCircle } from 'lucide-react';
+import Filters from '../../../components/filters';
 import CreateOrder from './create-order';
 import OrdersFilteredListContainer from './orders-filtered-list-container';
-import OrdersTab from './orders-tab';
 
 export function Orders() {
-  const [activeTab, setActiveTab] = useState<OrderStatus>('duringOrder');
-
   return (
     <div className="space-y-6 flex-col flex-1">
       <div className="flex justify-between">
-        <OrdersTab active={activeTab} setActive={setActiveTab} />
+        <Filters
+          options={[
+            { label: 'همه', value: 'all', Icon: Tally3 },
+            { label: 'لغو شده', value: 'outOfOrder', Icon: XCircle },
+            { label: 'فعال', value: 'duringOrder', Icon: CheckCircle },
+          ]}
+          paramName="orderType"
+        />
         <CreateOrder />
       </div>
 
-      <OrdersFilteredListContainer status={activeTab} />
+      <OrdersFilteredListContainer />
     </div>
   );
 }

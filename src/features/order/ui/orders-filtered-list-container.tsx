@@ -1,17 +1,34 @@
 import Placeholder from '@/components/placeholder';
 import Spinner from '@/components/spinner';
-import { useGetOrders } from '../hooks/use--get-orders';
-import type { OrderStatus } from '../type';
+import { useSearchParams } from 'react-router';
+import { useGetOrders } from '../hooks/use-get-orders';
+import type { Order, OrderType } from '../type';
 import OrdersFilteredListView from './orders-filtered-list-view';
 
-type OrdersListProps = {
-  status: OrderStatus;
-};
+export default function OrdersFilteredListContainer() {
+  const { data: orders, error, isError, isLoading } = useGetOrders();
+  const [searchParams] = useSearchParams();
 
-export default function OrdersFilteredListContainer({
-  status,
-}: OrdersListProps) {
-  const { data: orders, error, isError, isLoading } = useGetOrders(status);
+  const filterVal =
+    (searchParams.get('orderType') as OrderType | 'all') || 'all';
+
+  let filteredOrders: Order[] = [];
+
+  if (filterVal === 'all') {
+    filteredOrders = orders as Order[];
+  }
+
+  if (filterVal === 'duringOrder') {
+    filteredOrders = orders?.filter(
+      (order) => order.type === 'duringOrder'
+    ) as Order[];
+  }
+
+  if (filterVal === 'outOfOrder') {
+    filteredOrders = orders?.filter(
+      (order) => order.type === 'outOfOrder'
+    ) as Order[];
+  }
 
   if (isError) {
     return <Placeholder label={error?.message || 'خطایی رخ داده است.'} />;
@@ -25,5 +42,5 @@ export default function OrdersFilteredListContainer({
     return <Placeholder label=".هیچ نسخه ای وجود ندارد" />;
   }
 
-  return <OrdersFilteredListView orders={orders} />;
+  return <OrdersFilteredListView orders={filteredOrders} />;
 }
