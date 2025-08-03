@@ -2,14 +2,15 @@ import Placeholder from '@/components/placeholder';
 import Spinner from '@/components/spinner';
 import { useSearchParams } from 'react-router';
 import { useGetOrders } from '../hooks/use-get-orders';
-import type { Filters, Order } from '../type';
+import type { Order, OrderType } from '../type';
 import OrdersFilteredListView from './orders-filtered-list-view';
 
 export default function OrdersFilteredListContainer() {
   const { data: orders, error, isError, isLoading } = useGetOrders();
   const [searchParams] = useSearchParams();
 
-  const filterVal = (searchParams.get('orderType') as Filters) || 'all';
+  const filterVal =
+    (searchParams.get('orderType') as OrderType | 'all') || 'all';
 
   let filteredOrders: Order[] = [];
 

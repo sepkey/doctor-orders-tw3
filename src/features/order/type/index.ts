@@ -13,5 +13,3 @@ export type ParsedMetadata = {
   instruction?: string;
   discontinueUsingReason?: string;
 };
-
-export type Filters = 'all' | OrderType;

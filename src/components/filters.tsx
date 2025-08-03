@@ -2,10 +2,9 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { LucideIcon } from 'lucide-react';
 import { useSearchParams } from 'react-router';
-import type { Filters } from '../features/order/type';
 
 type FiltersProps = {
-  options: { value: Filters; label: string; Icon: LucideIcon }[];
+  options: { value: string; label: string; Icon: LucideIcon }[];
   paramName: string;
 };
 
@@ -15,7 +14,7 @@ export default function Filters({ options, paramName }: FiltersProps) {
   const currentFilter = searchParams.get(paramName) || options.at(0)?.value;
   console.log(currentFilter, 'current');
 
-  function handleClick(value: Filters) {
+  function handleClick(value: string) {
     const newParams = new URLSearchParams(searchParams);
 
     if (value === 'all') {
